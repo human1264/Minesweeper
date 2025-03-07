@@ -24,7 +24,7 @@ void setup ()
     for(int i = 0; i < numcols * numrows / 6; i++){
       setMines();
     }
-
+      
 }
 public void setMines()
 {
@@ -38,29 +38,31 @@ if(!mines.contains(buttons[mineRow][mineCol])){
 public void draw ()
 {
     background( 0 );
-    if(isWon() == true)
-        displayWinningMessage();
+    
+        
 }
 public boolean isWon()
 {
   int count = 0;
   for(int i = 0; i < numrows; i++){
     for(int j = 0; j < numcols; j++){
-      if(mines.contains(buttons[i][j])){count++;}
+      if(buttons[i][j].loss ==true){}
+      else if(buttons[i][j].clicked == true){count++;}
     }
   } 
-  if(count == numcols * numrows / 6){
+  if(count == 100 - mines.size()){
     return(true);
   }
-  return false;
+  return(false);
 }
+
 public void displayLosingMessage(MSButton a)
 {
   a.setLabel("   you clicked" + "\n" + "a mine");  
 }
-public void displayWinningMessage()
+public void displayWinningMessage(MSButton a)
 {
-    //your code here
+   a.setLabel("you win");
 }
 public boolean isValid(int r, int c)
 {
@@ -110,7 +112,14 @@ public class MSButton
         if(loss == true){}
         else if(mouseButton == LEFT && !mines.contains(this) && flagged == false && win == false){
         clicked = true;
-        
+        if(isWon()){
+          displayWinningMessage(this);
+          for(int i = myRow-1; i <= myRow + 1; i++){
+            for(int j = myCol-1; j <= myCol + 1; j++){
+              buttons[i][j].win = true;
+            }
+          }
+        }
         if(countMines(myRow,myCol) == 0 && !mines.contains(this)){
           for(int i = myRow-1; i <= myRow + 1; i++){
             for(int j = myCol-1; j <= myCol + 1; j++){
