@@ -112,6 +112,7 @@ public class MSButton
         if(loss == true){}
         else if(mouseButton == LEFT && !mines.contains(this) && flagged == false && win == false){
         clicked = true;
+        setLabel(countMines(this.myRow, this.myCol));
         if(isWon()){
           displayWinningMessage(this);
           for(int i = myRow-1; i <= myRow + 1; i++){
@@ -171,7 +172,6 @@ public class MSButton
              fill(255,0,0);
         else if(clicked){
             fill(200);
-            setLabel(countMines(this.myRow, this.myCol));
             
           }
         else{ 
