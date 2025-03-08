@@ -58,7 +58,7 @@ public boolean isWon()
 
 public void displayLosingMessage(MSButton a)
 {
-  a.setLabel("   you clicked" + "\n" + "a mine");  
+  a.setLabel("  you clicked" + "\n" + "a mine");  
 }
 public void displayWinningMessage(MSButton a)
 {
