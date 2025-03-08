@@ -152,6 +152,14 @@ public class MSButton
         if(this.clicked == true){}
         else if(flagged == true){flagged = false;}
         else{flagged = true;}
+        if(isWon()){
+          displayWinningMessage(this);
+          for(int i = myRow-1; i <= myRow + 1; i++){
+            for(int j = myCol-1; j <= myCol + 1; j++){
+              buttons[i][j].win = true;
+            }
+          }
+        }
         }
        
      }
